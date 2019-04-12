@@ -50,7 +50,7 @@ def callback(data):
         angle = atan2(y, x)
         rospy.loginfo("Marker ID: %s", marker.id)
         rospy.loginfo("Marker: X %s Y %s Z %s", x, y, z)
-        rospy.loginfo("Angle from camera: %s", angle)
+        rospy.loginfo("Direction from camera: %s", angle)
         quaternion = (
             marker.pose.pose.orientation.x,
             marker.pose.pose.orientation.y,
