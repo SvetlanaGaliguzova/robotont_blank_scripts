@@ -20,6 +20,9 @@ MAX_Z_SPEED = 2
 
 
 def keep_distance(x, y, z, roll, pitch, yaw, twist):
+    e = x - 0.5
+    p = 1
+    twist.linear.x = p*e
     #if x < 0.5:
     #    twist.linear.x = -0.1
     #else:
@@ -30,6 +33,9 @@ def keep_distance(x, y, z, roll, pitch, yaw, twist):
 
 
 def keep_center(x, y, z, roll, pitch, yaw, twist):
+    e = y
+    p = 0.9
+    twist.linear.y = p*e
     #if y < 0:
     #    twist.linear.y = -0.1
     #elif y > 0:
@@ -42,6 +48,9 @@ def keep_center(x, y, z, roll, pitch, yaw, twist):
 
 
 def turn_towards_ar(x, y, z, roll, pitch, yaw, twist):
+    e = yaw + 1.57
+    p = 0.8
+    twist.angular.z = p*e
     #if yaw < -1.5:
     #    twist.angular.z = -0.4
     #elif yaw > -1.5:
@@ -77,7 +86,7 @@ def callback(data):
         rospy.loginfo("RPY: %s %s %s", roll, pitch, yaw)
 
         # Change this to your marker ID
-        if marker.id == 1:
+        if marker.id == 6:
             global cmd_vel_pub
             last_heartbeat = rospy.get_time()
 
